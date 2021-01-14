@@ -14,9 +14,23 @@ $(document).ready(function() {
     updateTemperature()
   })
 
+  $('#toggle-power-saving').on('click', function() {
+    thermostat.togglePowerSavingMode()
+    if (thermostat.powerSavingMode) {
+      $('#power-saving-mode').text("ON")
+    } else {
+      $('#power-saving-mode').text("OFF")
+    }
+  })
 
-function updateTemperature() {
-  $('#temp').text(thermostat.temperature);
-}
+  $('#reset').on('click', function() {
+    thermostat.reset()
+    updateTemperature()
+  })
+
+  function updateTemperature() {
+    $('#temp').text(thermostat.temperature);
+    $('#temp').attr('class', thermostat.usage())
+  }
 
 })
