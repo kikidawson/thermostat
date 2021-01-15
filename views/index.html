@@ -5,7 +5,18 @@
 </head>
 <body>
 
-<h1 id="temp">Thermostat</h1>
+<h1>Thermostat</h1>
+<h1 id="temp"></h1>
+
+<section>
+  <h2>Temperature outside: <span id='temperature-outside'></span></h2>
+  <select id="location">
+    <option value="" disabled selected>Select your location</option>
+    <option value="london">London</option>
+    <option value="margate">Margate</option>
+    <option value="bristol">Bristol</option>
+  </select>
+</section>
 
 <p>Power Saving Mode: <span id='power-saving-mode'>ON</span></p>
 
@@ -17,7 +28,6 @@
 <script src='../src/Thermostat.js'></script>
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src='interface.js'></script>
-
 
 </body>
 </html>
