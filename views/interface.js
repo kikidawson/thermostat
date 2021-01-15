@@ -1,3 +1,4 @@
+'use strict';
 
 $(document).ready(function() {
   var thermostat = new Thermostat();
@@ -16,7 +17,7 @@ $(document).ready(function() {
 
   $('#toggle-power-saving').on('click', function() {
     thermostat.togglePowerSavingMode()
-    if (thermostat.powerSavingMode) {
+    if (thermostat.isPowerSavingModeOn()) {
       $('#power-saving-mode').text("ON")
     } else {
       $('#power-saving-mode').text("OFF")
@@ -29,8 +30,8 @@ $(document).ready(function() {
   })
 
   function updateTemperature() {
-    $('#temp').text(thermostat.temperature);
-    $('#temp').attr('class', thermostat.usage())
+    $('#temp').text(thermostat.getTemperature());
+    $('#temp').attr('class', thermostat.usage());
   }
 
 })

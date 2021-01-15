@@ -2,11 +2,14 @@
 
 class Thermostat {
   constructor() {
-    this.temperature = 20;
+    this.DEFAULT_TEMPERATURE = 20;
+    this.temperature = this.DEFAULT_TEMPERATURE;
     this.powerSavingMode = true;
     this.MINIMUM_TEMPERATURE = 10;
     this.MAX_TEMP_PSM_ON = 25;
     this.MAX_TEMP_PSM_OFF = 32;
+    this.MEDIUM_USAGE_LIMIT = 18;
+    this.HIGH_USAGE_LIMIT = 25;
   };
 
   getTemperature() {
@@ -25,24 +28,26 @@ class Thermostat {
     }
   }
 
+  isPowerSavingModeOn() {
+    return this.powerSavingMode === true;
+  }
+
   turnUp() {
     if (this.isMaximumTemperature()) {
-      return
-    } else {
-      this.temperature++
+      return // works as guard condition
     };
+    this.temperature++
   };
 
   turnDown() {
     if (this.isMinimumTemperature()) {
-      return
-    } else {
-      this.temperature--
-    }
+      return // works as guard condition
+    };
+    this.temperature--
   };
 
   togglePowerSavingMode() {
-    if (this.powerSavingMode) {
+    if (this.isPowerSavingModeOn()) {
       this.powerSavingMode = false
     } else {
       this.powerSavingMode = true
@@ -50,13 +55,13 @@ class Thermostat {
   };
 
   reset() {
-    this.temperature = 20
+    this.temperature = this.DEFAULT_TEMPERATURE;
   };
 
   usage() {
-    if (this.temperature < 18) {
+    if (this.temperature < this.MEDIUM_USAGE_LIMIT) {
       return "low-usage";
-    } else if (this.temperature <= 25) {
+    } else if (this.temperature <= this.HIGH_USAGE_LIMIT) {
       return 'medium-usage';
     } else {
       return 'high-usage';
